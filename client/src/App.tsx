@@ -10,6 +10,12 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      {/* Placeholder routes for links to prevent 404s during demo */}
+      <Route path="/quote" component={Home} />
+      <Route path="/driver-app" component={Home} />
+      <Route path="/privacy" component={Home} />
+      <Route path="/policies" component={Home} />
+      <Route path="/terms" component={Home} />
       <Route component={NotFound} />
     </Switch>
   );

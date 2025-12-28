@@ -1,57 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Playfair Display', serif;
-
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
+  --luxury-dark: 220 40% 12%;
+  --luxury-overlay: 220 40% 8%;
+  --luxury-text: 0 0% 100%;
+  --luxury-text-muted: 0 0% 85%;
+  --luxury-border: 0 0% 100%;
   
-  --primary: 220 40% 12%; /* Deep Navy */
+  --background: 0 0% 100%;
+  --foreground: 220 15% 15%;
+  
+  --primary: 220 40% 12%;
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
+  --muted: 220 20% 97%;
+  --muted-foreground: 220 10% 45%;
   
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --accent: 220 15% 95%;
+  --accent-foreground: 220 40% 12%;
   
-  --accent: 220 40% 12%;
-  --accent-foreground: 0 0% 100%;
-  
-  --destructive: 0 84% 60%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
+  --border: 220 10% 90%;
+  --input: 220 10% 90%;
   --ring: 220 40% 12%;
+  
+  --radius: 0rem; /* Sharp corners for luxury feel */
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+  
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans);
+    @apply bg-background text-foreground antialiased font-sans;
   }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    @apply tracking-tight font-medium;
+    @apply font-display font-medium tracking-tight;
   }
 }
 
-.hero-gradient {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
 }
 
-.text-gold {
-  color: #c5a47e; /* Approximate gold color for accents if needed */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
 }

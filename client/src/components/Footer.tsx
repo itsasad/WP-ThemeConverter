@@ -2,79 +2,76 @@ import { Link } from "wouter";
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-[#0a0f1c] border-t border-white/5 pt-20 pb-10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* Company */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-display font-semibold text-white">Company</h4>
-            <ul className="space-y-3">
-              {['About Us', 'Our Team', 'Careers', 'Press'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    <footer id="contact" className="bg-[#111827] text-white pt-20 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        
+        {/* Footer Logo */}
+        <div className="mb-12">
+          <img 
+            src="https://www.tbrglobal.com/wp-content/themes/tbrmono/assets/img/logo-tbr-footer.png" 
+            alt="TBR Global Chauffeuring" 
+            className="h-12 opacity-90"
+          />
+        </div>
+
+        <h3 className="text-xl font-display text-white mb-10 tracking-wide">
+          Contact your regional team
+        </h3>
+
+        {/* 3 Columns Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 w-full max-w-5xl mb-16 text-center">
+          {/* EMEA */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-bold font-display tracking-wide border-b border-white/10 pb-4 mb-4">
+              Europe, Middle East and Africa
+            </h4>
+            <div className="space-y-2 text-sm md:text-base text-gray-400 font-light">
+              <p>T: <a href="tel:+441412804800" className="hover:text-white transition-colors">+44 141 280 4800</a></p>
+              <p>E: <a href="mailto:res.uk@tbrglobal.com" className="hover:text-white transition-colors">res.uk@tbrglobal.com</a></p>
+            </div>
           </div>
 
-          {/* Services */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-display font-semibold text-white">Services</h4>
-            <ul className="space-y-3">
-              {['Corporate', 'Events', 'Roadshows', 'Private'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Americas */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-bold font-display tracking-wide border-b border-white/10 pb-4 mb-4">
+              The Americas
+            </h4>
+            <div className="space-y-2 text-sm md:text-base text-gray-400 font-light">
+              <p>T: <a href="tel:+18572147500" className="hover:text-white transition-colors">+1 857 214 7500</a></p>
+              <p>E: <a href="mailto:res.us@tbrglobal.com" className="hover:text-white transition-colors">res.us@tbrglobal.com</a></p>
+            </div>
           </div>
 
-          {/* Support */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-display font-semibold text-white">Support</h4>
-            <ul className="space-y-3">
-              {['Help Center', 'Terms of Service', 'Privacy Policy', 'Cookie Policy'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="space-y-6">
-            <h4 className="text-xl font-display font-semibold text-white">Contact</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <span className="font-semibold text-white w-16">Phone:</span>
-                <a href="tel:+442012345678" className="hover:text-primary transition-colors">+44 20 1234 5678</a>
-              </li>
-              <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <span className="font-semibold text-white w-16">Email:</span>
-                <a href="mailto:info@tbrglobal.com" className="hover:text-primary transition-colors">info@tbrglobal.com</a>
-              </li>
-              <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <span className="font-semibold text-white w-16">Address:</span>
-                <span>One Canada Square,<br />London, United Kingdom</span>
-              </li>
-            </ul>
+          {/* APAC */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-bold font-display tracking-wide border-b border-white/10 pb-4 mb-4">
+              Asia Pacific
+            </h4>
+            <div className="space-y-2 text-sm md:text-base text-gray-400 font-light">
+              <p>T: <a href="tel:+85258042960" className="hover:text-white transition-colors">+852 5804 2960</a></p>
+              <p>E: <a href="mailto:res.asia@tbrglobal.com" className="hover:text-white transition-colors">res.asia@tbrglobal.com</a></p>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground/60">
-          <p>&copy; {new Date().getFullYear()} Berry Executive. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-          </div>
+        {/* Bottom Links */}
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-12 text-xs md:text-sm text-gray-400 uppercase tracking-wider font-medium">
+          <Link href="/quote" className="hover:text-white transition-colors">Request a quote</Link>
+          <span className="text-gray-700 hidden md:inline">|</span>
+          <Link href="/driver-app" className="hover:text-white transition-colors">Driver App</Link>
+          <span className="text-gray-700 hidden md:inline">|</span>
+          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Notice</Link>
+          <span className="text-gray-700 hidden md:inline">|</span>
+          <Link href="/policies" className="hover:text-white transition-colors">Policies</Link>
+          <span className="text-gray-700 hidden md:inline">|</span>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+        </div>
+
+        {/* Copyright */}
+        <div className="text-center text-[10px] md:text-xs text-gray-600 font-light space-y-2">
+          <p>&copy; {new Date().getFullYear()} Copyright TBR Global. All Images Copyright TBR Global.</p>
+          <p>Registered Office: 15 Birkmyre Road, Glasgow G51 3JH.</p>
+          <p>Registered in Scotland No: SC427359</p>
         </div>
       </div>
     </footer>
