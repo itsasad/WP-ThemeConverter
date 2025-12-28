@@ -1,11 +1,10 @@
 ## Packages
-framer-motion | For scroll-triggered animations and smooth interactions
-clsx | Utility for constructing className strings conditionally
-tailwind-merge | Utility for merging Tailwind classes efficiently
+framer-motion | Smooth animations for scroll reveals and interactions
+clsx | Conditional class names utility
+tailwind-merge | Merging Tailwind classes properly
+react-hook-form | Form state management
+@hookform/resolvers | Zod resolvers for react-hook-form
 
 ## Notes
-Tailwind Config - extend fontFamily:
-fontFamily: {
-  display: ["Playfair Display", "serif"],
-  sans: ["Inter", "sans-serif"],
-}
+Tailwind Config needs to extend fontFamily to include "Playfair Display" and "Inter".
+Images will be used from the provided external URLs as static assets for this clone.

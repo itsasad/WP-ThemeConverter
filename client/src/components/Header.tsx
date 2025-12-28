@@ -1,114 +1,105 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
+    { name: "Corporate", href: "#services" },
+    { name: "Events", href: "#services" },
+    { name: "Roadshows", href: "#services" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-        isScrolled 
-          ? "bg-background/90 backdrop-blur-md border-white/10 py-4" 
-          : "bg-transparent py-6"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10",
+        scrolled ? "bg-primary/95 backdrop-blur-md py-4 shadow-lg" : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-display font-bold text-white tracking-widest uppercase">
-            Berry Executive
-          </Link>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <Link href="/" className="z-50">
+          <img 
+            src="https://www.tbrglobal.com/wp-content/themes/tbrmono/assets/brand/tbr-logo-web.svg" 
+            alt="TBR Global" 
+            className="h-8 md:h-10 w-auto invert brightness-0 filter" 
+          />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <ul className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-sm font-medium text-white/80 hover:text-primary transition-colors uppercase tracking-wider"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center gap-4 ml-4">
-              <Button variant="ghost" className="text-white hover:text-primary hover:bg-white/5">
-                Login
-              </Button>
-              <Button 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-none px-6"
-              >
-                Request Quote
-              </Button>
-            </div>
-          </nav>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-white/80 hover:text-white text-sm uppercase tracking-widest font-medium transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          <div className="h-4 w-px bg-white/30 mx-2" />
+          <Button 
+            variant="ghost" 
+            className="text-white hover:text-white hover:bg-white/10 uppercase tracking-widest text-xs"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Log In
+          </Button>
+          <Button 
+            className="bg-white text-primary hover:bg-white/90 uppercase tracking-widest text-xs font-semibold px-6"
+          >
+            Request Quote
+          </Button>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden z-50 text-white"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Mobile Nav Overlay */}
+        <div
+          className={cn(
+            "fixed inset-0 bg-primary/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden",
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl text-white font-display font-medium"
+            >
+              {link.name}
+            </a>
+          ))}
+          <div className="flex flex-col gap-4 mt-8 w-64">
+             <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-primary uppercase tracking-widest">
+              Log In
+            </Button>
+            <Button className="w-full bg-white text-primary hover:bg-white/90 uppercase tracking-widest">
+              Request Quote
+            </Button>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-t border-white/10 p-6 animate-in slide-in-from-top-5">
-          <ul className="flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="block text-lg font-medium text-white/80 hover:text-primary"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-            <li className="pt-4 border-t border-white/10 flex flex-col gap-3">
-              <Button variant="ghost" className="w-full justify-start text-white">
-                Login
-              </Button>
-              <Button className="w-full bg-primary text-primary-foreground">
-                Request Quote
-              </Button>
-            </li>
-          </ul>
-        </div>
-      )}
     </header>
   );
 }

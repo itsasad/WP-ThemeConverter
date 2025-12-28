@@ -1,9 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { api } from "@shared/routes";
-import { type InsertContactRequest } from "@shared/schema";
+import { api, type InsertContactRequest } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
 
-export function useCreateContactRequest() {
+export function useCreateContact() {
   const { toast } = useToast();
 
   return useMutation({
@@ -11,7 +10,7 @@ export function useCreateContactRequest() {
       const validated = api.contact.create.input.parse(data);
       const res = await fetch(api.contact.create.path, {
         method: api.contact.create.method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(validated),
       });
 
@@ -20,22 +19,20 @@ export function useCreateContactRequest() {
           const error = api.contact.create.responses[400].parse(await res.json());
           throw new Error(error.message);
         }
-        throw new Error('Failed to submit request');
+        throw new Error("Failed to send message");
       }
 
       return api.contact.create.responses[201].parse(await res.json());
     },
     onSuccess: () => {
       toast({
-        title: "Request Received",
-        description: "We will be in touch shortly to discuss your requirements.",
-        variant: "default",
-        className: "bg-primary text-primary-foreground border-none",
+        title: "Message Sent",
+        description: "Thank you for contacting TBR Global. We will be in touch shortly.",
       });
     },
     onError: (error) => {
       toast({
-        title: "Submission Failed",
+        title: "Error",
         description: error.message,
         variant: "destructive",
       });
